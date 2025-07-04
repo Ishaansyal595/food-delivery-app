@@ -1,0 +1,12 @@
+# Ignore node_modules in both frontend and backend
+client/node_modules/
+api/node_modules/
+
+# Ignore environment variables
+client/.env
+api/.env
+
+# Optional: VSCode and system files
+.vscode/
+.DS_Store
+Thumbs.db
