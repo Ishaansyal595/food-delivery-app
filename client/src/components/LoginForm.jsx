@@ -4,12 +4,11 @@ import { FcGoogle } from "react-icons/fc";
 import { TfiEmail } from "react-icons/tfi";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { AppContext } from "../context/AppContext";
-import axios from "axios";
 import toast from "react-hot-toast";
 import Modal from "../UI/Modal";
 
 const LoginForm = () => {
-  const { dispatch } = useContext(AppContext);
+  const { dispatch,axios } = useContext(AppContext);
   const navigate = useNavigate();
 
   const [form, setForm] = useState({

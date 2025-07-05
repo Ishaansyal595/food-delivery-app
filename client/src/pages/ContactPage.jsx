@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import { AppContext } from "./../context/AppContext";
 
 const ContactPage = () => {
+  const { axios } = useContext(AppContext);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,10 +19,7 @@ const ContactPage = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "http://localhost:3000/api/public/contact-us",
-        formData
-      );
+      const res = await axios.post("/api/public/contact-us", formData);
       if (res.data.success) {
         toast.success("Message sent successfully!");
         setFormData({ name: "", email: "", message: "" });
