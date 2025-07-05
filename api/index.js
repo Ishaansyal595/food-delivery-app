@@ -32,7 +32,12 @@ CloudinaryConnect();
 
 const port = process.env.PORT || 8080;
 
-app.use(cors({ origin: "https://food-delivery-app-xi-woad.vercel.app/", credentials: true }));
+app.use(
+  cors({
+    origin: "https://food-delivery-app-xi-woad.vercel.app",
+    credentials: true,
+  })
+);
 
 app.use(cookieParser());
 
@@ -58,6 +63,10 @@ app.use("/api/admin/order", AdminOrderRouter);
 app.use("/api/admin/category", AdminCategoryRouter);
 
 app.use("/api/public", MailRouter);
+
+app.get("/", (req, res) => {
+  res.send("✅ API is working and server is live!");
+});
 
 // ✅ Start the server
 app.listen(port, () => {
