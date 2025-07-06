@@ -162,6 +162,20 @@ const Navbar = () => {
           </div>
         )}
 
+        
+        <div
+          onClick={() => {
+            navigate("/cart");
+          }}
+          className="relative cursor-pointer"
+        >
+          <IoCartOutline size={25} className="text-white" />
+          <button className="absolute -top-2 -right-3 text-xs text-white bg-[#bd1e18] w-[18px] h-[18px] rounded-full">
+            {cartCount()}
+          </button>
+        </div>
+
+
         {user ? (
           <>
             <button onClick={() => navigate("/my-orders")}>My Orders</button>
