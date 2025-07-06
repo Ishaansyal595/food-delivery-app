@@ -169,7 +169,7 @@ const Navbar = () => {
           }}
           className="relative cursor-pointer"
         >
-          <IoCartOutline size={25} className="text-white" />
+          <IoCartOutline size={25} className="text-black" />
           <button className="absolute -top-2 -right-3 text-xs text-white bg-[#bd1e18] w-[18px] h-[18px] rounded-full">
             {cartCount()}
           </button>
