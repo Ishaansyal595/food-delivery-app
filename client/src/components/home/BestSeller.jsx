@@ -11,7 +11,7 @@ const BestSeller = () => {
         Best Seller
       </h2>
 
-      <div className="my-6 flex gap-4 items-center justify-center">
+      <div className="my-6 flex flex-wrap gap-4 items-center justify-center">
         {products
           .filter((product) => product.productInStock === true)
           .slice(0, 5)
