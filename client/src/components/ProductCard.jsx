@@ -15,7 +15,7 @@ const ProductCard = ({ product }) => {
   return product ? (
     <div
       onClick={handleNavigate}
-      className="border border-gray-500/20 rounded-md md:px-4 px-3 py-2 bg-white max-w-53 w-full "
+      className="border border-gray-500/20 rounded-md sm:px-2 md:px-4 px-3 py-2 bg-white max-w-53 w-full "
     >
       <div className="group cursor-pointer flex items-center  justify-center px-2">
         <img

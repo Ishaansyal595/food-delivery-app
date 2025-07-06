@@ -6,7 +6,7 @@ const BestSeller = () => {
   const { products } = useContext(AppContext);
 
   return (
-    <div className="my-20">
+    <div className="my-20 flex flex-wrap ">
       <h2 className={`text-2xl md:text-3xl font-medium text-gray-800`}>
         Best Seller
       </h2>
