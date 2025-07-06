@@ -34,7 +34,7 @@ const port = process.env.PORT || 8080;
 
 app.use(
   cors({
-    origin: "https://food-delivery-app-iota-rose.vercel.app",
+    origin: "https://food-delivery-app-chi-navy.vercel.app/",
     credentials: true,
   })
 );
