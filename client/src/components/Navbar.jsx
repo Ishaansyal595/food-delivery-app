@@ -7,6 +7,7 @@ import { assets } from "./../assets/assets";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
   const { user, dispatch, cartCount, searchQuery } = useContext(AppContext);
 
   const navigate = useNavigate();
@@ -19,10 +20,10 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch({ type: "SET_USER", payload: null });
-    dispatch({ type: "SET_CART", payload: {} }); // ✅ Clear cart in context
-    dispatch({ type: "SET_ADMIN", payload: false }); // ✅ Optional
+    dispatch({ type: "SET_CART", payload: {} });
+    dispatch({ type: "SET_ADMIN", payload: false });
     localStorage.removeItem("user");
-    localStorage.removeItem("cartItem"); // ✅ Clear cart from localStorage
+    localStorage.removeItem("cartItem");
     navigate("/");
   };
 
@@ -44,6 +45,7 @@ const Navbar = () => {
         >
           Home
         </NavLink>
+
         <NavLink
           to="/products"
           className={({ isActive }) =>
@@ -54,6 +56,7 @@ const Navbar = () => {
         >
           All Products
         </NavLink>
+
         <div className="hidden lg:flex items-center text-sm gap-2 border bg-white border-gray-300 px-3 rounded-full">
           <input
             className="py-1.5 w-full outline-none placeholder-gray-500"
@@ -65,6 +68,7 @@ const Navbar = () => {
           />
           <CiSearch size={20} />
         </div>
+
         <div
           onClick={() => {
             navigate("/cart");
@@ -76,6 +80,7 @@ const Navbar = () => {
             {cartCount()}
           </button>
         </div>
+
         {user ? (
           <div className="relative group">
             <img src={assets.profile_icon} alt="" className="h-10 w-10" />
@@ -106,12 +111,12 @@ const Navbar = () => {
         )}
       </div>
 
+      {/* Hamburger Icon */}
       <button
         onClick={() => setOpen(!open)}
         aria-label="Menu"
         className="sm:hidden"
       >
-        {/* Menu Icon SVG */}
         <svg
           width="21"
           height="15"
@@ -134,6 +139,29 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/products">Products</NavLink>
 
+        {/* Mobile Search Input Toggle */}
+        {!showMobileSearch ? (
+          <div
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => setShowMobileSearch(true)}
+          >
+            <CiSearch className="text-black" size={20} />
+          </div>
+        ) : (
+          <div className="flex items-center gap-2 border border-gray-300 px-3 py-1 rounded-full w-full">
+            <input
+              type="text"
+              placeholder="Search products"
+              className="py-1.5 w-full outline-none placeholder-gray-500"
+              autoFocus
+              onChange={(e) =>
+                dispatch({ type: "SEARCH_QUERY", payload: e.target.value })
+              }
+            />
+            <button onClick={() => setShowMobileSearch(false)}>❌</button>
+          </div>
+        )}
+
         {user ? (
           <>
             <button onClick={() => navigate("/my-orders")}>My Orders</button>
@@ -149,13 +177,6 @@ const Navbar = () => {
             Login
           </button>
         )}
-
-        <label className="relative inline-flex items-center cursor-pointer text-gray-900 gap-3">
-          <input type="checkbox" className="sr-only peer" />
-          <div className="w-12 h-7 bg-slate-300 rounded-full peer peer-checked:bg-primary transition-colors duration-200"></div>
-          <span className="dot absolute left-1 top-1 w-5 h-5 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5"></span>
-          Enable Feature
-        </label>
       </div>
     </nav>
   );
